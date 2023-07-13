@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-600 text-base-gray-100;
+  @apply bg-base-gray-600 text-base-gray-100;
 }
 
 body,

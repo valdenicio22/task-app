@@ -1,13 +1,14 @@
-import { Form } from './components/Form'
 import { Header } from './components/Header'
+import { TaskList } from './components/TaskList'
+import { TasksProvider } from './context/TasksContext'
 
 export default function App() {
   return (
     <>
       <Header />
-      <main className="max-w-3xl mx-auto">
-        <Form />
-      </main>
+      <TasksProvider>
+        <TaskList />
+      </TasksProvider>
     </>
   )
 }
