@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 body {
-  @apply font-default bg-gray-600;
+  @apply bg-gray-600 text-base-gray-100;
+}
+
+body,
+input,
+textarea,
+button {
+  @apply font-default font-normal text-base;
 }
