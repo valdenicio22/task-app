@@ -2,8 +2,7 @@ import { useMemo } from 'react'
 import { useTasks } from '../../../context/TasksContext'
 
 export function TasksQuantity() {
-  const { tasks } = useTasks()
-  const taskQuantity = tasks.length
+  const { tasks, tasksAmount } = useTasks()
   const taskCompleted = useMemo(
     () => tasks.filter((task) => task.completed),
     [tasks],
@@ -16,7 +15,7 @@ export function TasksQuantity() {
           Tasks created
         </strong>
         <span className="py-[2px] px-2 rounded-full bg-base-gray-400 font-bold text-xs">
-          {taskQuantity}
+          {tasksAmount}
         </span>
       </div>
       <div className="flex items-center gap-2">
@@ -24,7 +23,7 @@ export function TasksQuantity() {
           Completed
         </strong>
         <span className="py-[2px] px-2 rounded-full bg-base-gray-400 font-bold text-xs">
-          {!taskQuantity ? 0 : `${taskCompleted} of ${taskQuantity}`}
+          {!tasksAmount ? 0 : `${taskCompleted} of ${tasksAmount}`}
         </span>
       </div>
     </div>

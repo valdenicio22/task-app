@@ -5,16 +5,15 @@ import { EmptyTasks } from './TaskCard/EmptyTasks'
 import { TasksQuantity } from './TasksQuantity'
 
 export function TaskList() {
-  const { tasks, onDeleteTask, onToggleCompleted } = useTasks()
-  const taskQuantity = tasks.length
+  const { tasks, tasksAmount, onDeleteTask, onToggleCompleted } = useTasks()
 
   return (
     <main className="max-w-3xl mx-auto">
       <Form />
       <TasksQuantity />
 
-      {!taskQuantity && <EmptyTasks />}
-      {!!taskQuantity && (
+      {!tasksAmount && <EmptyTasks />}
+      {!!tasksAmount && (
         <section className={`flex flex-col gap-3 px-4`}>
           {tasks.map((task) => (
             <TaskCard

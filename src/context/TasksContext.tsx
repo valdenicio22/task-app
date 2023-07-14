@@ -3,18 +3,18 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
+  useReducer,
 } from 'react'
-
-export interface Task {
-  id: number
-  title: string
-  completed: boolean
-  createdAt: Date
-}
+import {
+  addTaskAction,
+  removeTaskAction,
+  toggleCompletedAction,
+} from '../reducers/tasks/actions'
+import { Task, TasksState, tasksReducer } from '../reducers/tasks/reducer'
 
 interface TasksContextProps {
   tasks: Array<Task>
+  tasksAmount: number
   onToggleCompleted: (id: number) => void
   onDeleteTask: (id: number) => void
   createNewTask: (title: Task['title']) => void
@@ -26,16 +26,33 @@ const LOCAL_STORAGE_KEY = 'tasks:TasksApp'
 interface TasksProviderProps {
   children: ReactNode
 }
+
+const initialState: TasksState = {
+  tasks: [],
+  tasksAmount: 0,
+}
+
 export function TasksProvider({ children }: TasksProviderProps) {
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const storedTasks = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (storedTasks) return JSON.parse(storedTasks)
-    else return []
-  })
+  const [tasksState, dispatch] = useReducer(
+    tasksReducer,
+    initialState,
+    (init) => {
+      const storedTasks = localStorage.getItem(LOCAL_STORAGE_KEY)
+      if (storedTasks) {
+        const { tasks, tasksAmount } = JSON.parse(storedTasks)
+        return {
+          tasks,
+          tasksAmount,
+        }
+      }
+      return init
+    },
+  )
+  const { tasks, tasksAmount } = tasksState
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks))
-  }, [tasks])
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasksState))
+  }, [tasksState])
 
   function createNewTask(taskTitle: Task['title']): void {
     const newTask = {
@@ -44,25 +61,22 @@ export function TasksProvider({ children }: TasksProviderProps) {
       completed: false,
       createdAt: new Date(),
     }
-    setTasks([...tasks, newTask])
+    dispatch(addTaskAction(newTask))
   }
 
   function onToggleCompleted(taskId: Task['id']): void {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task,
-    )
-    setTasks(updatedTasks)
+    dispatch(toggleCompletedAction(taskId))
   }
 
   function onDeleteTask(taskId: Task['id']): void {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId)
-    setTasks(updatedTasks)
+    dispatch(removeTaskAction(taskId))
   }
 
   return (
     <TasksContext.Provider
       value={{
         tasks,
+        tasksAmount,
         onDeleteTask,
         onToggleCompleted,
         createNewTask,

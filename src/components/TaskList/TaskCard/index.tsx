@@ -1,7 +1,7 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { TbTrash } from 'react-icons/tb'
-import { Task } from '../../../context/TasksContext'
+import { Task } from '../../../reducers/tasks/reducer'
 
 interface TaskProps {
   task: Task
