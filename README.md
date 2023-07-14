@@ -1,7 +1,7 @@
 # Challenges Ignite React 2022 <img width="20" height="20" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" />
 
-<p>This is my solution for the first React Challenge of the Ignite BootCamp.</p>
-<p>During this challenge, we explored the basic concepts of React development to build a simple to-do list from scratch. The list has options to create and delete items.</p>
+<p>This repository contains my solution for the first React Challenge of the Ignite BootCamp.</p>
+<p>The challenge focused on building a simple to-do list from scratch, while exploring the basic concepts of React development.</p>
 
 ## Challenge 01 - To-Do List
 
@@ -9,10 +9,10 @@
  <thead>
   <tr>
    <th>
-    The challenge
+    The Challenge
    </th>
    <th>
-        Challenge design &nbsp; &nbsp; <a href='https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate'><img width='15'  src='https://github.com/valdenicio22/git-sheet-cheat/assets/40251933/174de823-9d39-4f04-a1ee-56b747589dc1'></a>
+        Challenge design &nbsp; <a href='https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate'><img width='20' src='https://github.com/valdenicio22/task-app/assets/40251933/ea4ecbda-ad9f-4e69-b3d9-0f0906124337'></a>
    </th>
   </tr>
  </thead>
@@ -23,6 +23,7 @@
     <ul>
      <li>Create a new task.</li>
      <li>Mark and unmark a task as completed.</li>
+     <li>Edit a task.</li>
      <li>Remove a task.</li>
      <li>The user should not be able to create an empty task.</li>
      <li>The user's task list should persist even when the page is refreshed.</li>
@@ -58,7 +59,7 @@
 
    <td>
     <ul>
- <li>Utilization of Context API for state management.</li>
+ <li>Utilization of Context API and useReducer for state management.</li>
  <li>React Hook Form for handling form input and validation.</li>
  <li>Integration of Zod for data schema validation.</li>
  <li>Incorporation of a third-party component library - Radix</li>
