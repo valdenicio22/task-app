@@ -1,6 +1,6 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
-import { FiEdit2, FiSave } from 'react-icons/fi'
+import { FiEdit2 } from 'react-icons/fi'
 import { TbTrash } from 'react-icons/tb'
 import { Task } from '../../../reducers/tasks/reducer'
 import { EditTask } from './EditTask'
@@ -44,22 +44,6 @@ export function TaskCard({
       )}
 
       <div className="self-start flex items-center gap-2">
-        {task.isEditEnable && (
-          <button
-            className={`h-5 w-5 transition-colors duration-300 text-base-gray-300 ${
-              !task.completed ? `hover:text-brand-blue-dark` : `opacity-70`
-            } `}
-            form="edit-task-form"
-            type="submit"
-          >
-            <FiSave
-              size={20}
-              className={`transition-colors duration-300 text-base-gray-300 ${
-                !task.completed ? `hover:text-brand-blue-dark` : `opacity-70`
-              }`}
-            />
-          </button>
-        )}
         {!task.isEditEnable && (
           <button
             type="button"

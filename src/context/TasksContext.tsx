@@ -4,7 +4,6 @@ import {
   useContext,
   useEffect,
   useReducer,
-  useState,
 } from 'react'
 import {
   addTaskAction,
@@ -41,7 +40,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const [tasksState, dispatch] = useReducer(
     tasksReducer,
     initialState,
-    (init) => {
+    (initialValue) => {
       const storedTasks = localStorage.getItem(LOCAL_STORAGE_KEY)
       if (storedTasks) {
         const { tasks, tasksAmount } = JSON.parse(storedTasks)
@@ -50,7 +49,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
           tasksAmount,
         }
       }
-      return init
+      return initialValue
     },
   )
   const { tasks, tasksAmount } = tasksState
