@@ -2,10 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { z } from 'zod'
-import { Task, useTasks } from '../../../context/TasksContext'
+import { useTasks } from '../../../context/TasksContext'
 
 const taskSchema = z.object({
-  taskTitle: z.string().min(1, 'This is a required field!'),
+  taskTitle: z.string().min(1, 'Must have at least 1 character'),
 })
 type FormType = z.infer<typeof taskSchema>
 

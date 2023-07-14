@@ -12,7 +12,7 @@
     The challenge
    </th>
    <th>
-        Challenge &nbsp; &nbsp; <a href='https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate'><img width='15'  src='https://github.com/valdenicio22/git-sheet-cheat/assets/40251933/174de823-9d39-4f04-a1ee-56b747589dc1'></a>
+        Challenge design &nbsp; &nbsp; <a href='https://www.figma.com/file/0n0zDN7zbzhRbaEO74Xesx/ToDo-List/duplicate'><img width='15'  src='https://github.com/valdenicio22/git-sheet-cheat/assets/40251933/174de823-9d39-4f04-a1ee-56b747589dc1'></a>
    </th>
   </tr>
  </thead>
