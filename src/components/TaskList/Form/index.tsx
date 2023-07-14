@@ -31,7 +31,7 @@ export function Form() {
 
   return (
     <form
-      className={`flex items-center gap-2 -mt-7`}
+      className={`flex items-center gap-2 -mt-7 px-4`}
       onSubmit={handleSubmit(handleNewTask)}
     >
       <div className="flex-1 flex flex-col gap-1">
