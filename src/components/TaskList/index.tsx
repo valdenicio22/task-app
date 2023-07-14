@@ -5,7 +5,13 @@ import { EmptyTasks } from './TaskCard/EmptyTasks'
 import { TasksQuantity } from './TasksQuantity'
 
 export function TaskList() {
-  const { tasks, tasksAmount, onDeleteTask, onToggleCompleted } = useTasks()
+  const {
+    tasks,
+    tasksAmount,
+    onDeleteTask,
+    onToggleCompleted,
+    onToggleEnableEditTask,
+  } = useTasks()
 
   return (
     <main className="max-w-3xl mx-auto">
@@ -21,6 +27,7 @@ export function TaskList() {
               task={task}
               handleOnToggle={onToggleCompleted}
               handleDeleteTask={onDeleteTask}
+              handleToggleEnableEditTask={onToggleEnableEditTask}
             />
           ))}
         </section>

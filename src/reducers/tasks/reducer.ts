@@ -4,6 +4,7 @@ export interface Task {
   id: number
   title: string
   completed: boolean
+  isEditEnable: boolean
   createdAt: Date
 }
 
@@ -29,6 +30,32 @@ export function tasksReducer(state: TasksState, action: StateAction) {
           ? { ...task, completed: !task.completed }
           : task,
       )
+      return {
+        ...state,
+        tasks: updatedTasks,
+      }
+    }
+    case ActionTypes.TOGGLE_ENABLE_EDIT_TASK: {
+      const updatedTasks = state.tasks.map((task) =>
+        task.id === action.payload.taskId
+          ? { ...task, isEditEnable: !task.isEditEnable }
+          : task,
+      )
+      return {
+        ...state,
+        tasks: updatedTasks,
+      }
+    }
+    case ActionTypes.SAVE_EDITED_TASK: {
+      const updatedNewTask = {
+        ...action.payload.newTask,
+        isEditEnable: false,
+        createdAt: new Date(),
+      }
+      const updatedTasks = state.tasks.map((task) =>
+        task.id === updatedNewTask.id ? updatedNewTask : task,
+      )
+
       return {
         ...state,
         tasks: updatedTasks,

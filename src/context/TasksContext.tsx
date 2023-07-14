@@ -4,11 +4,14 @@ import {
   useContext,
   useEffect,
   useReducer,
+  useState,
 } from 'react'
 import {
   addTaskAction,
   removeTaskAction,
+  saveEditedTaskAction,
   toggleCompletedAction,
+  toggleEnableEditTaskAction,
 } from '../reducers/tasks/actions'
 import { Task, TasksState, tasksReducer } from '../reducers/tasks/reducer'
 
@@ -18,6 +21,8 @@ interface TasksContextProps {
   onToggleCompleted: (id: number) => void
   onDeleteTask: (id: number) => void
   createNewTask: (title: Task['title']) => void
+  onToggleEnableEditTask: (taskId: number) => void
+  onSaveEditedTask: (task: Task) => void
 }
 
 const TasksContext = createContext({} as TasksContextProps)
@@ -59,6 +64,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
       id: tasks.length + 1,
       title: taskTitle,
       completed: false,
+      isEditEnable: false,
       createdAt: new Date(),
     }
     dispatch(addTaskAction(newTask))
@@ -68,8 +74,16 @@ export function TasksProvider({ children }: TasksProviderProps) {
     dispatch(toggleCompletedAction(taskId))
   }
 
+  function onToggleEnableEditTask(taskId: Task['id']): void {
+    dispatch(toggleEnableEditTaskAction(taskId))
+  }
+
   function onDeleteTask(taskId: Task['id']): void {
     dispatch(removeTaskAction(taskId))
+  }
+
+  function onSaveEditedTask(task: Task): void {
+    dispatch(saveEditedTaskAction(task))
   }
 
   return (
@@ -80,6 +94,8 @@ export function TasksProvider({ children }: TasksProviderProps) {
         onDeleteTask,
         onToggleCompleted,
         createNewTask,
+        onToggleEnableEditTask,
+        onSaveEditedTask,
       }}
     >
       {children}
